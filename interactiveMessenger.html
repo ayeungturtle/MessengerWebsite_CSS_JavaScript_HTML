@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    body {
+        font-family: "Helvetica Neue";
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      section {
+        max-width: 450px;
+        margin: 50px auto;
+      }
+      section div {
+        max-width: 255px;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        line-height: 24px;
+      }
+      section div:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      input{
+        margin: 0px auto;
+        margin-top: 90px;
+        display: block;
+        clear: both;
+      }
+      
+      .clear {
+        clear: both;
+      }
+      
+      .from-me {  
+        position: relative;
+        padding: 0px 20px;
+        color: white;  /*  right text color   */
+        background: #0B93F6;   /*  right main bubble color   */
+        border-radius: 15px;
+        float: right;
+      }
+      .from-me:before {   /*  right pointer   */
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: -2px;
+        right: -7px;
+        height: 13px;
+        border-right: 20px solid #0B93F6;
+        border-bottom-left-radius: 16px 14px;
+        -webkit-transform: translate(0, -2px);
+      }
+      .from-me:after {   /* right background behind pointer    */
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: -2px;
+        right: -56px;
+        width: 26px;
+        height: 20px;
+        background: white;
+        border-bottom-left-radius: 10px;
+        -webkit-transform: translate(-30px, -2px);
+      }
+      
+      .from-them {
+        position: relative;
+        padding: 0px 20px;
+        background: #E5E5EA;    /*  left main bubble color   */
+        border-radius: 15px;
+        color: black;    /*  left text color   */
+        float: left;
+      }
+      .from-them:before {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        bottom: -2px;
+        left: -7px;
+        height: 13px;
+        border-left: 20px solid #E5E5EA;      /*  left pointer color   */
+        border-bottom-right-radius: 16px 14px;
+        -webkit-transform: translate(0, -2px);
+      }
+      .from-them:after {  /* left background behind pointer    */
+        content: "";
+        position: absolute;
+        z-index: 3;
+        bottom: -2px;
+        left: 4px;
+        width: 26px;
+        height: 20px;
+        background: white;
+        border-bottom-right-radius: 10px;
+        -webkit-transform: translate(-30px, -2px);
+      }
+      
+      .padTop {
+      padding-top: 15px
+    }  
+    
+    </style>
+    <script>
+      addToLeft = () => {
+        text = document.getElementById("textField").value;
+        document.getElementById("main").innerHTML += `<div class="clear"></div>
+                <div class="from-them">
+                  <p>${text}</p>
+                </div>`;
+                document.getElementById("textField").value = "";
+                window.scrollTo(0,document.body.scrollHeight);
+      }
+      addToRight = () => {
+        text = document.getElementById("textField").value;
+        document.getElementById("main").innerHTML += `<div class="clear"></div>
+                <div class="from-me">
+                  <p>${text}</p>
+                </div>`;
+                document.getElementById("textField").value = "";
+                window.scrollTo(0,document.body.scrollHeight);
+      }
+    </script>
+</head>
+<body>
+      <div>
+        <section id = "main">
+                <div class="from-me">
+                  <p>I hope this conversation coninues.</p>
+                </div>
+              <div class="clear"></div>
+                <div class="from-them">
+                  <p>I agree.  It's already so good.</p>
+                </div>
+              
+        </section>
+      </div> 
+      <div class = "padTop"> 
+              <input  type = "text" id = "textField" />
+              <div>
+              <button class = from-them onClick = "addToLeft()">LEFT</button>
+              <button class = from-me onClick = "addToRight()">RIGHT</button>
+            </div>
+      </div>  
+           
+</body>
+</html>
